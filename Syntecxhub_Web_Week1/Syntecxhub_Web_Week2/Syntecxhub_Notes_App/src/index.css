@@ -1,0 +1,65 @@
+:root {
+  --bg: #dde5e1;
+  --ink: #1d2b27;
+  --ink-soft: #55655f;
+  --card: #ffffff;
+  --line: #c3cfca;
+  --focus: #1b6ef3;
+  font-family: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; line-height: 1.5; }
+h1, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.page { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 4rem; display: grid; gap: 1.5rem; }
+.head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; }
+.head h1 { font-family: "Literata", Georgia, serif; font-size: clamp(2.25rem, 7vw, 3.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.head p { color: var(--ink-soft); }
+
+/* Composer */
+.composer { background: var(--card); border: 1px solid var(--line); border-top: 8px solid var(--note); border-radius: 6px 6px 18px 18px; padding: 1rem 1.1rem 0.9rem; display: grid; gap: 0.5rem; max-width: 640px; }
+.composer input, .composer textarea, .note input:not([type="radio"]), .note textarea { width: 100%; border: 0; background: transparent; padding: 0.4rem 0.1rem; resize: vertical; }
+.composer input { font-weight: 700; font-size: 1.05rem; }
+.composer textarea, .note textarea { font-family: "Literata", Georgia, serif; line-height: 1.55; }
+.composer input:focus-visible, .composer textarea:focus-visible { outline-offset: 4px; border-radius: 4px; }
+.composer-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.err { color: #b3261e; font-size: 0.9rem; }
+.add, .note .solid { background: var(--ink); color: #fff; border: 0; border-radius: 10px; padding: 0.55rem 1.1rem; font-weight: 700; cursor: pointer; min-height: 42px; }
+.add:hover, .note .solid:hover { background: #2c423b; }
+.note .solid:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.swatches { display: flex; gap: 0.5rem; border: 0; padding: 0; margin: 0; }
+.swatches label { position: relative; cursor: pointer; }
+.swatches input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.swatches span { display: block; width: 28px; height: 28px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line); }
+.swatches input:checked + span { box-shadow: 0 0 0 3px var(--ink); }
+.swatches input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 3px; }
+.swatches.small span { width: 24px; height: 24px; }
+
+.search input { width: 100%; max-width: 420px; min-height: 44px; padding: 0 1rem; border-radius: 999px; border: 1.5px solid var(--line); background: #f6f9f7; }
+
+/* Notes grid: masonry-style columns */
+.grid { columns: 280px; column-gap: 1rem; }
+.note { break-inside: avoid; margin: 0 0 1rem; background: var(--card); border: 1px solid var(--line); border-top: 8px solid var(--note); border-radius: 4px 4px 16px 16px; padding: 1rem 1.1rem 0.75rem; }
+.note h3 { font-family: "Literata", Georgia, serif; font-size: 1.15rem; line-height: 1.3; margin-bottom: 0.35rem; overflow-wrap: anywhere; }
+.note .body { font-family: "Literata", Georgia, serif; white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.55; }
+.note .stamp { margin-top: 0.75rem; font-size: 0.8rem; color: var(--ink-soft); }
+.note.editing input:not([type="radio"]) { font-weight: 700; font-size: 1.05rem; }
+.note.editing textarea { background: #f6f9f7; border-radius: 8px; padding: 0.5rem; }
+
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--line); }
+.actions button { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 0.3rem 0.8rem; cursor: pointer; min-height: 38px; }
+.actions button:hover { border-color: var(--ink); }
+.actions .solid { border: 0; }
+.actions .danger { background: #b3261e; border-color: #b3261e; color: #fff; font-weight: 700; }
+.confirm { font-size: 0.9rem; font-weight: 600; margin-right: auto; }
+.note.editing .swatches { margin-top: 0.5rem; }
+
+.empty { color: var(--ink-soft); padding: 1.5rem 0; max-width: 40ch; }
+.warn { background: #fff3cd; border: 1px solid #e0b93a; border-radius: 10px; padding: 0.75rem 1rem; max-width: 640px; }

@@ -1,0 +1,73 @@
+:root {
+  font-family: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sky-a: #1b64b8;
+  --sky-b: #3f8ddb;
+  --panel: rgba(8, 20, 45, 0.3);
+  --focus: #ffe08a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+h1, h2, p, dl, dd, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+button, input { font: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* The whole page takes its colour from the current sky */
+.app { min-height: 100vh; color: #fff; background: linear-gradient(175deg, var(--sky-a), var(--sky-b)); position: relative; }
+.app[data-theme="night"] { --sky-a: #0a1738; --sky-b: #2a3d78; }
+.app[data-theme="cloud"] { --sky-a: #3b5068; --sky-b: #65798f; }
+.app[data-theme="fog"] { --sky-a: #55636f; --sky-b: #7d8b97; }
+.app[data-theme="rain"] { --sky-a: #1f3a54; --sky-b: #4a6a88; }
+.app[data-theme="snow"] { --sky-a: #46647f; --sky-b: #7f9fbd; }
+.app[data-theme="storm"] { --sky-a: #1c1835; --sky-b: #463f6b; }
+.app[data-night="true"]:not([data-theme="night"])::before { content: ""; position: absolute; inset: 0; background: rgba(4, 8, 24, 0.4); pointer-events: none; }
+
+.shell { position: relative; max-width: 760px; margin: 0 auto; padding: 1.25rem 1.25rem 2rem; display: grid; gap: 1.5rem; }
+.top { display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 700; font-size: 1.05rem; }
+.units { display: flex; background: var(--panel); border-radius: 999px; padding: 3px; }
+.units button { border: 0; background: transparent; color: #fff; padding: 0.35rem 0.9rem; border-radius: 999px; cursor: pointer; min-height: 36px; }
+.units button[aria-pressed="true"] { background: #fff; color: #10223d; font-weight: 700; }
+
+.search { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.search input { flex: 1 1 220px; min-height: 46px; padding: 0 1rem; border-radius: 12px; border: 0; background: rgba(255, 255, 255, 0.95); color: #10223d; }
+.search button { min-height: 46px; padding: 0 1.1rem; border-radius: 12px; border: 1.5px solid rgba(255, 255, 255, 0.7); cursor: pointer; }
+.search .solid { background: #fff; color: #10223d; font-weight: 700; border-color: #fff; }
+.search .ghost { background: transparent; color: #fff; }
+.search button:disabled { opacity: 0.6; cursor: wait; }
+
+/* Current conditions: the temperature is the memorable thing */
+.now { padding: 0.5rem 0 0; }
+.place { font-size: 1.3rem; font-weight: 600; }
+.temp { font-size: clamp(6rem, 26vw, 11rem); font-weight: 300; line-height: 0.95; letter-spacing: -0.05em; margin-top: 0.25rem; font-variant-numeric: tabular-nums; }
+.temp span { font-size: 0.22em; font-weight: 600; letter-spacing: 0; vertical-align: top; position: relative; top: 0.5em; margin-left: 0.15em; }
+.condition { font-size: 1.4rem; margin-top: 0.25rem; }
+.facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1.5rem; background: var(--panel); border-radius: 16px; padding: 1rem 1.25rem; }
+.facts dt { font-size: 0.85rem; opacity: 0.85; }
+.facts dd { font-size: 1.25rem; font-weight: 700; }
+
+.forecast-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+.forecast { background: var(--panel); border-radius: 16px; padding: 0.25rem 1.25rem; }
+.forecast li { display: grid; grid-template-columns: 4.5rem 2rem 1fr auto; gap: 0.75rem; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
+.forecast li:last-child { border-bottom: 0; }
+.f-day { font-weight: 600; }
+.f-icon { font-size: 1.4rem; }
+.f-rain { font-size: 0.9rem; opacity: 0.85; }
+.f-temps { display: flex; gap: 0.75rem; font-variant-numeric: tabular-nums; }
+.f-temps span { opacity: 0.8; min-width: 2.2rem; text-align: right; }
+.f-temps strong { min-width: 2.2rem; text-align: right; }
+
+.loading { padding: 3rem 0; text-align: center; font-size: 1.1rem; animation: pulse 1.4s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.5; } }
+@media (prefers-reduced-motion: reduce) { .loading { animation: none; } }
+
+.error { background: rgba(120, 15, 15, 0.55); border: 1.5px solid rgba(255, 255, 255, 0.5); border-radius: 14px; padding: 1rem 1.25rem; display: grid; gap: 0.75rem; justify-items: start; }
+.error button { background: #fff; color: #5c0f0f; border: 0; border-radius: 10px; padding: 0.5rem 1rem; font-weight: 700; cursor: pointer; min-height: 40px; }
+.credit { font-size: 0.85rem; opacity: 0.8; text-align: center; }
+
+@media (max-width: 480px) {
+  .forecast li { grid-template-columns: 3.5rem 2rem 1fr auto; gap: 0.5rem; }
+  .facts { padding: 0.9rem; }
+  .search button { flex: 1 1 auto; }
+}

@@ -1,0 +1,10 @@
+[
+  { "id": "seed-1", "title": "Monthly broadband bill", "amount": 1200, "category": "Bills", "date": "2026-10-01" },
+  { "id": "seed-2", "title": "Lunch at campus canteen", "amount": 180, "category": "Food", "date": "2026-10-02" },
+  { "id": "seed-3", "title": "Bus fare to university", "amount": 60, "category": "Transport", "date": "2026-10-02" },
+  { "id": "seed-4", "title": "Data Structures reference book", "amount": 650, "category": "Education", "date": "2026-10-03" },
+  { "id": "seed-5", "title": "Groceries", "amount": 1450.5, "category": "Food", "date": "2026-10-03" },
+  { "id": "seed-6", "title": "Pharmacy", "amount": 320, "category": "Health", "date": "2026-10-04" },
+  { "id": "seed-7", "title": "T-shirt", "amount": 800, "category": "Shopping", "date": "2026-10-04" },
+  { "id": "seed-8", "title": "Ride-share home", "amount": 210, "category": "Transport", "date": "2026-10-05" }
+]
